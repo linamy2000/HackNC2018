@@ -1,5 +1,3 @@
-package Character;
-
 public class Character {
 	// Declare instance variables
 	private String _name;
@@ -38,8 +36,8 @@ public class Character {
 		return _hp;
 	}
 	
-	public boolean isAlive() {
-		return (_hp >= 0);
+	public boolean playerIsAlive() {
+		return (_hp > 0);
 	}
 	
 	public int playerDamaged(int otherStrength) {
