@@ -77,7 +77,7 @@ public class HelloDreamWorld {
         
 		clearBoard(gamearray);
 		printBoard(gamearray);
-        console.close();
+        //console.close();
 	}
 	
 	public static void main(String[] args) {
