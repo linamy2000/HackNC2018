@@ -1,5 +1,3 @@
-package Character;
-
 import java.util.*;
 
 public class Main {
@@ -17,12 +15,23 @@ public class Main {
 		System.out.println("Please choose your character's job. Archer, Warrior, Clown, Astronaut, or Wizard: ");
 		String job = scan.next();
 		
-		if (!job.equals("Archer") || !job.equals("Warrior") || !job.equals("Clown") || !job.equals("Astronaut") || !job.equals("Wizard") || !job.equals("archer") || !job.equals("warrior") || !job.equals("clown") || !job.equals("astronaut") || !job.equals("wizard")) {
+		String[] inputs = {"Archer", "Warrior", "Clown", "Astronaut", "Wizard", "archer", "warrior", "clown", "astronaut", "wizard"};
+		
+		boolean input = false;
+		
+		for (int i = 0; i < 10; i++) {
+			if (job.equals(inputs[i])) {
+				input = true;
+				break;
+			}
+		}
+		
+		if (!input) {
 			System.out.println("There was an error in your input. Please check your spelling. ");
 			job = scan.next();
 		}
 		
-		if (job.equals("Archer") || (job.equals("archer")) {
+		if (job.equals("Archer") || (job.equals("archer"))) {
 			System.out.println("Welcome " + name + " the " + job + "!");
 			System.out.println("Your initial health is 110 and your strength is 35.");
 			player = new Character(name, job, 110, 35);
