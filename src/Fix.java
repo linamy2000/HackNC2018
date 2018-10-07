@@ -1,4 +1,4 @@
-// TODO: Print player and monster health after each attack. Use stats in battle.
+// Beating up the monster is working now. Still need to make player killable.
 
 import java.util.Random;
 import java.util.Scanner;
@@ -170,16 +170,18 @@ public class Fix {
 	        if (theAnswers[index] == userAnswer) {
 	        	System.out.println("Correct!");
 	        	bob.monsterDamaged(p.getStrength());
+	        	System.out.println(p.getName() + " hit the monster for " + p.getStrength() + " damage.");
 	        } else {
 	        	System.out.println("Incorrect :(");
 	        	p.playerDamaged(bob.getStrength());
+	        	System.out.println("The monster hit " + p.getName() + " for " + bob.getStrength() + " damage.");
 	        }
         }
 	}
 	
 	public static void move(char[][] gamearray, Character p) {
         Scanner console = new Scanner(System.in);
-        System.out.println("Which way would you like to move(WASD)?: ");
+        System.out.println("Which way would you like to move (WASD)?: ");
         char inputDirection = console.next().charAt(0);
         System.out.println(inputDirection);
 
@@ -301,9 +303,14 @@ public class Fix {
 		char[][] gamearray = new char[16][16];
 		initBoard(gamearray);
 		printBoard(gamearray);
-		while(!((PLAYER_ROW == 15) && (PLAYER_COL == 15)) && (player.playerIsAlive()))
-			move(gamearray, player);
-		
-		System.out.println("Congratz You Won!! :)");
+		while(!((PLAYER_ROW == 15) && (PLAYER_COL == 15)) && (player.playerIsAlive())) {
+			move(gamearray, player);	
+		}
+
+		if(player.playerIsAlive() == false) {
+			System.out.println("Game Over. :(");
+		} else {
+			System.out.println("Congratz You Won!! :)");
+		}
 	}
 }
