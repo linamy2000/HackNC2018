@@ -14,41 +14,41 @@ public class Main {
 		System.out.println("Please enter the name of your character!: ");
 		String name = scan.next();
 		
-		System.out.println("Please choose your character. Archer, Warrior, Clown, Astronaut, or Wizard: ");
+		System.out.println("Please choose your character's job. Archer, Warrior, Clown, Astronaut, or Wizard: ");
 		String job = scan.next();
 		
 		if (!job.equals("Archer") || !job.equals("Warrior") || !job.equals("Clown") || !job.equals("Astronaut") || !job.equals("Wizard") || !job.equals("archer") || !job.equals("warrior") || !job.equals("clown") || !job.equals("astronaut") || !job.equals("wizard")) {
-			System.out.println("There was an error in your input, please enter your character exactly as specified. ");
+			System.out.println("There was an error in your input. Please check your spelling. ");
 			job = scan.next();
 		}
 		
-		if (job.equals("Archer")) {
+		if (job.equals("Archer") || (job.equals("archer")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
-			System.out.println("Your initial health points and strength are 110 and 35");
+			System.out.println("Your initial health is 110 and your strength is 35.");
 			player = new Character(name, job, 110, 35);
 		}
 		
-		if (job.equals("Warrior")) {
+		if (job.equals("Warrior") || job.equals("warrior")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
-			System.out.println("Your initial health points and strength are 90 and 45");
+			System.out.println("Your initial health is 90 and your strength is 45.");
 			player = new Character(name, job, 90, 45);
 		}
 		
-		if (job.equals("Clown")) {
+		if (job.equals("Clown") || job.equals("clown")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
-			System.out.println("Your initial health points and strength are 120 and 30");
+			System.out.println("Your initial health is 120 and your strength is 30.");
 			player = new Character(name, job, 120, 30);
 		}
 		
-		if (job.equals("Astronaut")) {
+		if (job.equals("Astronaut") || job.equals ("astronaut")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
-			System.out.println("Your initial health points and strength are 100 and 40");
+			System.out.println("Your initial health is 100 and your strength is 40.");
 			player = new Character(name, job, 100, 40);
 		}
 		
-		if (job.equals("Wizard")) {
+		if (job.equals("Wizard") || job.equals ("wizard")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
-			System.out.println("Your initial health points and strength are 80 and 50");
+			System.out.println("Your initial health is 80 and your strength is 50.");
 			player = new Character(name, job, 80, 50);
 		}
 		
