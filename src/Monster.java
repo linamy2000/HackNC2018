@@ -16,6 +16,14 @@ public class Monster {
 		_strength = r.nextInt(21);
 	}
 	
+	public boolean monsterIsAlive() {
+		return (_hp > 0);
+	}
+	
+	public int getStrength() {
+		return _strength;
+	}
+	
 	public int monsterDamaged(int otherStrength) {
 		_hp -= otherStrength;
 		
