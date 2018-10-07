@@ -31,7 +31,7 @@ public class Main {
 			job = scan.next();
 		}
 		
-		if (job.equals("Archer") || (job.equals("archer"))) {
+		if (job.equals("Archer") || job.equals("archer")) {
 			System.out.println("Welcome " + name + " the " + job + "!");
 			System.out.println("Your initial health is 110 and your strength is 35.");
 			player = new Character(name, job, 110, 35);
