@@ -1,5 +1,7 @@
 package Characters;
 
+import java.util.*;
+
 public class Character {
 	// Declare instance variables
 	private String _name;
@@ -7,8 +9,6 @@ public class Character {
 	private int _hp; // max is 100
 	private int _maxhp;
 	private int _strength;
-	private int _potion;
-	private int _potionCounter;
 	
 	// Initialize variables
 	public Character (String name, String job, int maxhp, int strength) {
@@ -17,9 +17,6 @@ public class Character {
 		_hp = maxhp;
 		_maxhp = maxhp;
 		_strength = strength;
-		_potionCounter = 0;
-		
-		_potion = (maxhp/5);
 	}
 	
 	public String getName() {
@@ -52,6 +49,39 @@ public class Character {
 			return -1;
 		
 		return _hp;
+	}
+	
+	public int drankSmallPotion() {
+		_hp += 10;
+		if (_hp > _maxhp) {
+			_hp = _maxhp;
+		}
+		return _hp;
+	}
+	
+	public int drankMedPotion() {
+		_hp += 20;
+		if (_hp > _maxhp) {
+			_hp = _maxhp;
+		}
+		return _hp;
+	}
+	
+	public int drankLargePotion() {
+		_hp += 30;
+		if (_hp > _maxhp) {
+			_hp = _maxhp;
+		}
+		return _hp;
+	}
+	
+	public boolean critical() {
+		Random r = new Random();
+		int i = r.nextInt(9);
+		if (i == 0) {
+			return true;
+		}
+		return false;
 	}
 	
 }
