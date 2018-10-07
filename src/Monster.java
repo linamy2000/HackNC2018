@@ -18,9 +18,8 @@ public class Monster {
 	public int monsterDamaged(int otherStrength) {
 		_hp -= otherStrength;
 		
-		if (_hp < 0) {
+		if (_hp < 0)
 			return -1;
-		}
 		
 		return _hp;
 	}
@@ -44,4 +43,5 @@ public class Monster {
 	public int getStrength() {
 		return _strength;
 	}
+	
 }
