@@ -1,4 +1,3 @@
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -174,14 +173,17 @@ public class Fix {
 	        	if (p.critical()) {
 	        		bob.monsterDamaged(p.getStrength() * 3);
 	        		System.out.println(p.getName() + " got a critical hit for " + p.getStrength() * 3 + " damage.");
+		        	System.out.println(p.getName() + " has " + p.getHP() + " HP.");
 	        	} else {
 	        		bob.monsterDamaged(p.getStrength());
 	        		System.out.println(p.getName() + " hit the monster for " + p.getStrength() + " damage.");
+		        	System.out.println(p.getName() + " has " + p.getHP() + " HP.");
 	        	}
 	        } else {
 	        	System.out.println("Incorrect :(");
 	        	p.playerDamaged(bob.getStrength());
 	        	System.out.println("The monster hit " + p.getName() + " for " + bob.getStrength() + " damage.");
+	        	System.out.println(p.getName() + " has " + p.getHP() + " HP.");
 	        }
         }
         
