@@ -1,8 +1,10 @@
+
 import java.util.Random;
 import java.util.Scanner;
-import Characters.Character;
 
+import Characters.Character;
 import Characters.Monster;
+import Characters.Potion;
 
 public class Fix {
 	
@@ -145,7 +147,7 @@ public class Fix {
 	
 	public static boolean encounter() {
 		Random rando = new Random();
-		int chance = rando.nextInt(3) + 1;
+		int chance = rando.nextInt(4) + 1;
 		boolean isMonster = true;
 		if (chance > 1)
 			isMonster = false;
@@ -158,6 +160,8 @@ public class Fix {
         
         Monster bob = new Monster(100, 20);
         
+        Potion po = new Potion();
+        
         while (bob.monsterIsAlive() && p.playerIsAlive()) {
         	Random rand = new Random();
 	        int index = rand.nextInt(theQuestions.length);
@@ -167,13 +171,38 @@ public class Fix {
 	        int userAnswer = answerInput.nextInt();
 	        if (theAnswers[index] == userAnswer) {
 	        	System.out.println("Correct!");
-	        	bob.monsterDamaged(p.getStrength());
-	        	System.out.println(p.getName() + " hit the monster for " + p.getStrength() + " damage.");
+	        	if (p.critical()) {
+	        		bob.monsterDamaged(p.getStrength() * 3);
+	        		System.out.println(p.getName() + " got a critical hit for " + p.getStrength() * 3 + " damage.");
+	        	} else {
+	        		bob.monsterDamaged(p.getStrength());
+	        		System.out.println(p.getName() + " hit the monster for " + p.getStrength() + " damage.");
+	        	}
 	        } else {
 	        	System.out.println("Incorrect :(");
 	        	p.playerDamaged(bob.getStrength());
 	        	System.out.println("The monster hit " + p.getName() + " for " + bob.getStrength() + " damage.");
 	        }
+        }
+        
+        if (!bob.monsterIsAlive()) {
+        	System.out.println(p.getName() + " has defeated the monster!");
+        	Random rand = new Random();
+        	int potionChance = rand.nextInt(4);
+        		if (potionChance == 1) {
+        			System.out.println("This monster dropped a " + po.pSize() + " potion! ");
+        			if (po.pSize() == "small") {
+        				p.drankSmallPotion();
+            			System.out.println(p.getName() + " drank it and healed 10 HP!");
+        			} else if (po.pSize() == "medium") {
+        				p.drankMedPotion();
+        				System.out.println(p.getName() + " drank it and healed 20 HP!");
+        			} else {
+        				p.drankLargePotion();
+        				System.out.println(p.getName() + " drank it and healed 30 HP!");
+        			}
+        			System.out.println(p.getName() + " now has " + p.getHP() + " HP.");
+        		}
         }
 	}
 	
@@ -183,7 +212,7 @@ public class Fix {
         char inputDirection = console.next().charAt(0);
         System.out.println(inputDirection);
 
-		if(inputDirection == 'W') {
+		if(inputDirection == 'W' || inputDirection == 'w') {
 			if (PLAYER_ROW != 0 && gamearray[PLAYER_ROW-1][PLAYER_COL] != 'X') {
 				PLAYER_ROW --;
 				if(encounter())  {
@@ -194,7 +223,7 @@ public class Fix {
 				System.out.println("Invalid Move!");
 		}
 		
-		else if(inputDirection == 'A')
+		else if(inputDirection == 'A' || inputDirection == 'a')
 			if (PLAYER_COL != 0 && gamearray[PLAYER_ROW][PLAYER_COL-1] != 'X') {
 				PLAYER_COL --;
 				if(encounter())  {
@@ -202,7 +231,7 @@ public class Fix {
 			}
 			} else 
 				System.out.println("Invalid Move!");
-		else if(inputDirection == 'S')
+		else if(inputDirection == 'S' || inputDirection == 's')
 			if (PLAYER_ROW != 15 && gamearray[PLAYER_ROW+1][PLAYER_COL] != 'X') {
 				PLAYER_ROW ++;
 				if(encounter())  {
@@ -210,7 +239,7 @@ public class Fix {
 				}
 			} else 
 				System.out.println("Invalid Move!");
-		else //if(inputDirection == 'D')
+		else //if(inputDirection == 'D' || inputDirection == 'd')
 			if (PLAYER_COL != 15 && gamearray[PLAYER_ROW][PLAYER_COL+1] != 'X') {
 				PLAYER_COL ++;
 				if(encounter())  {
