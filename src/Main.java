@@ -10,7 +10,7 @@ public class Main {
 		
 		// Enter name
 		System.out.println("Please enter the name of your character!: ");
-		String name = scan.next();
+		String name = scan.nextLine();
 		
 		System.out.println("Please choose your character's job. Archer, Warrior, Clown, Astronaut, or Wizard: ");
 		String job = scan.next();
@@ -60,7 +60,5 @@ public class Main {
 			System.out.println("Your initial health is 80 and your strength is 50.");
 			player = new Character(name, job, 80, 50);
 		}
-		
-		
 	}
 }
