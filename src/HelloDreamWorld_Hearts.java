@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class HelloDreamWorld {
+public class HelloDreamWorld_HeartVersion {
 	
 	public static int PLAYER_ROW = 0;
 	public static int PLAYER_COL = 0;
@@ -96,15 +96,6 @@ public class HelloDreamWorld {
 	    	gamearray[15][14] = 'X';
 	    }
 	    
-	    else if(boardChoice == 2) {
-	    	
-	    	
-	    }
-	    
-	    else {
-	    	
-	    }
-	    
 	 
 	    
 	}
@@ -143,7 +134,7 @@ public class HelloDreamWorld {
 	
 	public static boolean encounter() {
 		Random rando = new Random();
-		int chance = rando.nextInt(4) + 1;
+		int chance = rando.nextInt(3) + 1;
 		boolean isMonster = true;
 		if (chance > 1)
 			isMonster = false;
@@ -157,18 +148,29 @@ public class HelloDreamWorld {
         Random rand = new Random();
         int index = rand.nextInt(theQuestions.length);
         System.out.println(theQuestions[index]);
-        
-        Scanner answerInput = new Scanner(System.in);
-        int userAnswer = answerInput.nextInt();
-        if (theAnswers[index] == userAnswer) {
-        	System.out.println("Correct!");
-        	return true;
-        	// Continue here for battle sequence!
-        } else {
-        	System.out.println("Wrong!");
-        	System.out.println("The Correct Answer is " + theAnswers[index]);
-        	return false;
+        boolean rightWrong = false;
+        boolean looping = true;
+        while (looping) {
+	        try {
+		        Scanner answerInput = new Scanner(System.in);
+		        int userAnswer = answerInput.nextInt();
+		        if (theAnswers[index] == userAnswer) {
+		        	System.out.println("Correct!");
+		        	rightWrong = true;
+		        	looping = false;
+		        	// Continue here for battle sequence!
+		        } else {
+		        	System.out.println("Wrong!");
+		        	System.out.println("The Correct Answer is " + theAnswers[index]);
+		        	rightWrong = false;
+		        	looping = false;
+		        }
+	        }
+	        catch (Exception e) {
+	        	System.out.println("Please enter a number as your answer!s");
+	        }
         }
+        return rightWrong;
 	}
 	
 	public static void move(char[][] gamearray) {
@@ -181,6 +183,7 @@ public class HelloDreamWorld {
 			if (PLAYER_ROW != 0 && gamearray[PLAYER_ROW-1][PLAYER_COL] != 'X') {
 				PLAYER_ROW --; 
 				if(encounter()) {
+					System.out.println("Eeeeek! You have encountered a DRACULA. Answer the next math question right to beat it.");
 					if(question())
 						System.out.println("You have destroyed the monster! :D");
 					else 
@@ -194,6 +197,7 @@ public class HelloDreamWorld {
 			if (PLAYER_COL != 0 && gamearray[PLAYER_ROW][PLAYER_COL-1] != 'X') {
 				PLAYER_COL --; 
 				if(encounter()) {
+					System.out.println("Eeeeek! You have encountered a MUMMY. Answer the next math question right to beat it.");
 					if(question())
 						System.out.println("You have destroyed the monster! :D");
 					else 
@@ -208,6 +212,7 @@ public class HelloDreamWorld {
 			if (PLAYER_ROW != 15 && gamearray[PLAYER_ROW+1][PLAYER_COL] != 'X') {
 				PLAYER_ROW ++;
 				if(encounter()) {
+					System.out.println("Eeeeek! You have encountered an EVIL PUMPKIN. Answer the next math question right to beat it.");
 					if(question())
 						System.out.println("You have destroyed the monster! :D");
 					else 
@@ -220,6 +225,13 @@ public class HelloDreamWorld {
 		else {//if(inputDirection == 'D') 
 			if (PLAYER_COL != 15 && gamearray[PLAYER_ROW][PLAYER_COL+1] != 'X')
 				PLAYER_COL ++;
+				if(encounter()) {
+					System.out.println("Eeeeek! You have encountered a SLIME monster. Answer the next math question right to beat it.");
+					if(question())
+						System.out.println("You have destroyed the monster! :D");
+					else 
+						heart--;
+				}
 			else 
 				System.out.println("Invalid Move!");
 		}
@@ -236,14 +248,14 @@ public class HelloDreamWorld {
 	public static void main(String[] args) {
 		//input of initial data
 		
-		System.out.println("Welcome to Hello Dream World! Created by the Dream Team that can only dream!");
+		System.out.println("Welcome to Hello Dream World: ~SPOOKY~ HALLOWEEN! Created by the Dream Team that can only dream!");
 		Scanner console = new Scanner(System.in);
 		
 		// Enter name
 		System.out.println("Please enter the name of your character!: ");
 		String name = console.next();
 		
-		System.out.println("Please choose your character's job. Archer, Warrior, Clown, Astronaut, or Wizard: ");
+		System.out.println("Please choose your character: Archer, Warrior, Clown, Astronaut, or Wizard: ");
 		String job = console.next();
 		
 
@@ -258,7 +270,7 @@ public class HelloDreamWorld {
 			System.out.println("Game over. Better luck next time! :)");
 		}
 		else {
-			System.out.println("Congratz You Won!! :)");
+			System.out.println("Congratulations! You have killed all the monster and completed the challenge! You won!! :)");
 		}
 		
 	}
