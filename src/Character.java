@@ -1,3 +1,5 @@
+package Characters;
+
 public class Character {
 	// Declare instance variables
 	private String _name;
@@ -37,7 +39,10 @@ public class Character {
 	}
 	
 	public boolean playerIsAlive() {
-		return (_hp > 0);
+		if (_hp > 0) {
+			return true;
+		} else
+		return false;
 	}
 	
 	public int playerDamaged(int otherStrength) {
@@ -49,14 +54,4 @@ public class Character {
 		return _hp;
 	}
 	
-	public void addPotion() {
-		_potionCounter++;
-	}
-	
-	public void usePotion() {
-		_hp += _potion;
-		
-		if (_hp >= _maxhp)
-			_hp = _maxhp;
-	}
 }
