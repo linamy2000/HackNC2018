@@ -1,5 +1,3 @@
-// Beating up the monster is working now. Still need to make player killable.
-
 import java.util.Random;
 import java.util.Scanner;
 import Characters.Character;
@@ -147,7 +145,7 @@ public class Fix {
 	
 	public static boolean encounter() {
 		Random rando = new Random();
-		int chance = rando.nextInt(4) + 1;
+		int chance = rando.nextInt(3) + 1;
 		boolean isMonster = true;
 		if (chance > 1)
 			isMonster = false;
@@ -160,7 +158,7 @@ public class Fix {
         
         Monster bob = new Monster(100, 20);
         
-        while (bob.monsterIsAlive()) {
+        while (bob.monsterIsAlive() && p.playerIsAlive()) {
         	Random rand = new Random();
 	        int index = rand.nextInt(theQuestions.length);
 	        System.out.println(theQuestions[index]);
